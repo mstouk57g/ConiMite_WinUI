@@ -30,7 +30,9 @@ namespace FirstWinUI
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            m_window = new AnotherWindow();
+            m_window.Activate();
         }
+        private Window m_window;
     }
 }
