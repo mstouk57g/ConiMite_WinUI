@@ -130,16 +130,12 @@ namespace FirstWinUI
                 switch (sender.Presenter.Kind)
                 {
                     case AppWindowPresenterKind.CompactOverlay:
-                        // 紧凑视图中，隐藏自定义的的标题栏，而是使用系统的标题栏
-                        // 因为这种时候，自定义的标题栏会被当成普通的控件来伺候
-                        // 当然，你乐意也行， 效果也差不了多少
-                        AppTitleBar.Visibility = Visibility.Collapsed; // 隐藏自定义标题栏
-                        sender.TitleBar.ResetToDefault(); // 使用系统默认标题栏
+                        // 这种时候不要切换到系统默认的标题栏，因为再回去时就会出现三大金刚的问题
+                        AppTitleBar.Visibility = Visibility.Visible; 
                         break;
 
                     case AppWindowPresenterKind.FullScreen:
-                        // 全屏的时候也隐藏自定义的标题栏，因为自定义的标题栏也会被当成普通的控件来伺候
-                        AppTitleBar.Visibility = Visibility.Collapsed; // 隐藏自定义标题栏
+                        AppTitleBar.Visibility = Visibility.Visible;
                         sender.TitleBar.ExtendsContentIntoTitleBar = true; // 画布依旧扩展到标题栏上
                         break;
 
@@ -185,6 +181,10 @@ namespace FirstWinUI
                 if (newPresenterKind == AppWindow.Presenter.Kind)
                 {
                     AppWindow.SetPresenter(AppWindowPresenterKind.Default);
+                    if (ExtendsContentIntoTitleBar == true)
+                    {
+                        AppTitleBar.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {
