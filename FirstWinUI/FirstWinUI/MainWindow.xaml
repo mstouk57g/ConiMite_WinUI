@@ -7,7 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/> <!--使用Base的Mica材质-->
+        <!-- <MicaBackdrop Kind="BaseAlt"/> 使用BaseAlt的Mica材质-->
+        <!-- <DesktopAcrylicBackdrop/> 使用亚克力材质 -->
+    </Window.SystemBackdrop>
     <Grid>
         <Grid
             x:Name="AppTitleBar"
