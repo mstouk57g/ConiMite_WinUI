@@ -30,5 +30,16 @@
                 Style="{StaticResource CaptionTextBlockStyle}"
                 Text="FirstWinUI"/>
         </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="CompactoverlaytBtn"
+                Content="紧凑"
+                Click="SwitchPresenter"/>
+                <Button x:Name="FullscreenBtn" 
+                Content="全屏"
+                Click="SwitchPresenter"/>
+                <Button x:Name="OverlappedBtn"
+                Content="默认"
+                Click="SwitchPresenter"/>
+        </StackPanel>
     </Grid>
 </Window>

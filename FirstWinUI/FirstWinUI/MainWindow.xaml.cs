@@ -34,6 +34,7 @@ namespace FirstWinUI
             this.InitializeComponent();
             // 初始化一堆乱七八糟的
             m_AppWindow = this.AppWindow;
+            m_AppWindow.Changed += AppWindow_Changed; // 按上初始化
             Activated += MainWindow_Activated;
             AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
             AppTitleBar.Loaded += AppTitleBar_Loaded;
@@ -119,6 +120,76 @@ namespace FirstWinUI
             {
                 TitleBarTextBlock.Foreground =
                     (SolidColorBrush)App.Current.Resources["WindowCaptionForeground"];
+            }
+        }
+        private void AppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
+        {
+            if (args.DidPresenterChange)
+            {
+                switch (sender.Presenter.Kind)
+                {
+                    case AppWindowPresenterKind.CompactOverlay:
+                        // 紧凑视图中，隐藏自定义的的标题栏，而是使用系统的标题栏
+                        // 因为这种时候，自定义的标题栏会被当成普通的控件来伺候
+                        // 当然，你乐意也行， 效果也差不了多少
+                        AppTitleBar.Visibility = Visibility.Collapsed; // 隐藏自定义标题栏
+                        sender.TitleBar.ResetToDefault(); // 使用系统默认标题栏
+                        break;
+
+                    case AppWindowPresenterKind.FullScreen:
+                        // 全屏的时候也隐藏自定义的标题栏，因为自定义的标题栏也会被当成普通的控件来伺候
+                        AppTitleBar.Visibility = Visibility.Collapsed; // 隐藏自定义标题栏
+                        sender.TitleBar.ExtendsContentIntoTitleBar = true; // 画布依旧扩展到标题栏上
+                        break;
+
+                    case AppWindowPresenterKind.Overlapped:
+                        // 重叠的时候（就是非常普通，启动后的样子），使用的是我们自己自定义的标题栏
+                        AppTitleBar.Visibility = Visibility.Visible;
+                        sender.TitleBar.ExtendsContentIntoTitleBar = true;
+                        break;
+
+                    default:
+                        // 使用系统默认标题栏
+                        sender.TitleBar.ResetToDefault();
+                        break;
+                }
+            }
+        }
+
+        private void SwitchPresenter(object sender, RoutedEventArgs e)
+        {
+            if (AppWindow != null)
+            {
+                AppWindowPresenterKind newPresenterKind;
+                switch ((sender as Button).Name)
+                {
+                    case "CompactoverlaytBtn": // 紧凑
+                        newPresenterKind = AppWindowPresenterKind.CompactOverlay;
+                        break;
+
+                    case "FullscreenBtn": // 全屏
+                        newPresenterKind = AppWindowPresenterKind.FullScreen;
+                        break;
+
+                    case "OverlappedBtn": // 重叠（就是你不动它的时候）
+                        newPresenterKind = AppWindowPresenterKind.Overlapped;
+                        break;
+
+                    default: // 啥也不是（使用系统默认，这个就让系统决定）
+                        newPresenterKind = AppWindowPresenterKind.Default;
+                        break;
+                }
+
+                // 如果在这个模式中又按了这个模式的按钮，就滚回默认的模式（系统决定的）
+                if (newPresenterKind == AppWindow.Presenter.Kind)
+                {
+                    AppWindow.SetPresenter(AppWindowPresenterKind.Default);
+                }
+                else
+                {
+                    // 如果不是，就切换
+                    AppWindow.SetPresenter(newPresenterKind);
+                }
             }
         }
     }
