@@ -2,7 +2,7 @@
 
 ## 开始之前：
 
-本篇内容有点复杂，也有些难度，所以建议跳过这篇往后面看几篇再回来，尤其是自定义标题栏
+本篇内容有点复杂，也有些难度，所以建议跳过这篇往后面看几篇再回来，尤其是自定义标题栏和改变背景材质
 
 *本篇文章继续沿用[上一篇文章的仓库](https://github.com/mstouk57g/ConiMite_WinUI/tree/master/FirstWinUI)*
 
@@ -11,6 +11,8 @@
 > *1、自定义标题栏*
 > 
 > *2、改变窗口材质（云母和亚克力）*
+>
+> *3.TextBlock文字标签是个啥（是叫做标签？不管了）*
 
 ## 自定义标题栏
 
@@ -83,7 +85,7 @@
 
 ~~这就是传说中的嵌套布局吧！~~
 
-然后，我们要在代码中应用上这个标题栏（`MainWindow.cs`）
+然后，我们要在代码中应用上这个标题栏（`MainWindow.xaml.cs`）
 
 在`public MainWindow()`底下
 
@@ -150,7 +152,7 @@ public MainWindow()
 
 标题栏，分为可以拖动的区域（图标，标题文字，空白区域等），和可以交互的区域（按钮~~，不包括三大金刚~~）
 
-拖动的区域不进行控件的交互，交互的区域不能拖。所以最后代码被造成了这样（`MainWindow.cs`）：
+拖动的区域不进行控件的交互，交互的区域不能拖。所以最后代码被造成了这样（`MainWindow.xaml.cs`）：
 
 ```C#
 public sealed partial class MainWindow : Window
@@ -307,7 +309,7 @@ using Microsoft.UI.Windowing; //添加引用
 </StackPanel>
 ```
 
-在初始化一堆乱七八糟那底下再加一个（`MainWindow.xaml`）
+在初始化一堆乱七八糟那底下再加一个（`MainWindow.xaml.cs`）
 
 ```C#
 this.InitializeComponent();
@@ -468,7 +470,7 @@ MicaBackdrop中的`Kind`也可以换成`BaseAlt`，效果也有些不同
 </StackPanel>
 ```
 
-然后写逻辑代码，丢到`MainWindow`类里随便一个位置（`MainWindow.cs`）
+然后写逻辑代码，丢到`MainWindow`类里随便一个位置（`MainWindow.xaml.cs`）
 
 ```C#
 private void SetBackdrop(object sender, RoutedEventArgs e)
