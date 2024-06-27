@@ -174,7 +174,7 @@ MainWindow中有一个按钮，那我们可以尝试用那个按钮唤起
 
 代码非常简单明确，也比较易懂（
 
-然后打开`MainWindow.cs`（找不到的把`MainWindow.xaml`展开），前面那堆引用先不管
+然后打开`MainWindow.xaml.cs`（找不到的把`MainWindow.xaml`展开），前面那堆引用先不管
 
 看到这点代码：
 
