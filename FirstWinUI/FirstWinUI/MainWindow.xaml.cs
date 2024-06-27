@@ -26,6 +26,8 @@ namespace FirstWinUI
         public MainWindow()
         {
             this.InitializeComponent();
+            ExtendsContentIntoTitleBar = true; // 将页面扩展到标题栏中（隐藏了传统的标题栏）
+            SetTitleBar(AppTitleBar); // 设置标题栏是名字叫“AppTitleBar”的那个布局
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)
