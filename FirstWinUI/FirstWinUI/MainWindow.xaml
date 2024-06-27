@@ -17,7 +17,9 @@
             Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <Button x:Name="myButton" Margin="12,0,0,0" Grid.Column="0" Click="myButton_Click">Click Me</Button>
             <TextBlock
                 Margin="12,0,0,0"
                 Grid.Column="1"
@@ -25,8 +27,5 @@
                 Style="{StaticResource CaptionTextBlockStyle}"
                 Text="FirstWinUI"/>
         </Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-        </StackPanel>
     </Grid>
 </Window>
