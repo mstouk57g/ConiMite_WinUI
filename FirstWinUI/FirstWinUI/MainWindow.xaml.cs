@@ -16,6 +16,7 @@ using Rect = Windows.Foundation.Rect;
 using Microsoft.UI.Windowing; //添加引用
 using Windows.Foundation.Collections;
 using Microsoft.UI.Input;
+using Microsoft.UI.Composition.SystemBackdrops;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -189,6 +190,26 @@ namespace FirstWinUI
                 {
                     // 如果不是，就切换
                     AppWindow.SetPresenter(newPresenterKind);
+                }
+            }
+        }
+        private void SetBackdrop(object sender, RoutedEventArgs e)
+        {
+            if (AppWindow != null)
+            {
+                switch ((sender as Button).Name)
+                {
+                    case "MicaBaseBtn": // 按钮MicaBase
+                        SystemBackdrop = new MicaBackdrop()
+                            { Kind = MicaKind.Base }; //进行更换
+                        break;
+                    case "MicaBaseAltBtn": // 按钮MicaBaseAlt
+                        SystemBackdrop = new MicaBackdrop()
+                            { Kind = MicaKind.BaseAlt }; //进行更换
+                        break;
+                    case "AcrylicBtn": // 按钮Acrylic
+                        SystemBackdrop = new DesktopAcrylicBackdrop(); //进行更换
+                        break;
                 }
             }
         }

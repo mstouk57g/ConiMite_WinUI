@@ -34,7 +34,8 @@
                 Style="{StaticResource CaptionTextBlockStyle}"
                 Text="FirstWinUI"/>
         </Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
                 <Button x:Name="CompactoverlaytBtn"
                 Content="紧凑"
                 Click="SwitchPresenter"/>
@@ -44,6 +45,18 @@
                 <Button x:Name="OverlappedBtn"
                 Content="默认"
                 Click="SwitchPresenter"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="MicaBaseBtn"
+                    Content="MicaBase"
+                    Click="SetBackdrop"/>
+                <Button x:Name="MicaBaseAltBtn" 
+                    Content="MicaBaseAlt"
+                    Click="SetBackdrop"/>
+                <Button x:Name="AcrylicBtn"
+                    Content="Acrylic"
+                    Click="SetBackdrop"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
