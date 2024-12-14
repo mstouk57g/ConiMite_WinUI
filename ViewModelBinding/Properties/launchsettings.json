@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "ViewModelBinding (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "ViewModelBinding (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
